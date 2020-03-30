@@ -1,7 +1,7 @@
-let mod = require('../src/ship.js');
+const Port = require('../src/ports');
 
 describe('port constructor', () => {
-    let port =  new mod.Port('Southampton');
+    let port =  new Port('Southampton');
     it('returns an object', () => {
         expect(port).toBeInstanceOf(Object);
     });

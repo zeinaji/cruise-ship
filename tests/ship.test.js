@@ -1,6 +1,5 @@
 let Ship = require('../src/ship');
-let Port = require('../src/ports');
-let Itinerary = require('../src/itinerary');
+
 
 describe('setup', () => {
 

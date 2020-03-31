@@ -8,9 +8,11 @@ describe('setup', () => {
     let venice;
     let itinerary;
     let ship;
+    let port;
     beforeEach(() => {
-        southampton = new Port('Southampton');
-        venice = new Port('Venice');
+        port = {removeShip: jest.fn(), addShip: jest.fn()};
+        southampton = {...port, name: 'Southampton', ships: []};
+        venice = {...port, name: 'Venice', ships: []};
         itinerary = new Itinerary([southampton, venice]);
         ship = new Ship(itinerary);
     });
@@ -30,7 +32,7 @@ describe('setup', () => {
         });
 
         it('gets added to port on instantiation', () => {
-            expect(ship.currentPort.ships).toEqual([ship]);
+            expect(port.addShip).toHaveBeenCalledWith(ship);
         });
     });
 
@@ -52,7 +54,7 @@ describe('setup', () => {
 
         it('removes the ship from the previous ports ships', () => {
             ship.setSail();
-            expect(southampton.ships).not.toContain(ship);
+            expect(southampton.removeShip).toHaveBeenCalled();
 
         });
     });
@@ -71,7 +73,7 @@ describe('setup', () => {
         it('gets added to the ports ships', () => {
             ship.setSail();
             ship.dock();
-            expect(ship.currentPort.ships).toContain(ship);
+            expect(ship.currentPort.addShip).toHaveBeenCalled();
         });
 
     });

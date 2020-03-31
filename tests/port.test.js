@@ -2,32 +2,36 @@ const Port = require('../src/ports');
 const Ship = require('../src/ship');
 const Itinerary = require('../src/itinerary');
 
-describe('port constructor', () => {
+describe('setup', () => {
     let southampton;
-    let itinerary;
     let ship;
     beforeEach(() => {
         southampton = new Port('Southampton');
-        itinerary = new Itinerary([southampton]);
-        ship = new Ship(itinerary);
+        ship = jest.fn();
     });
 
-    it('returns an object', () => {
-        expect(southampton).toBeInstanceOf(Object);
+    describe('port constructor', () => {
+        it('returns an object', () => {
+            expect(southampton).toBeInstanceOf(Object);
+
+        });
+        it('sets a name', () => {
+            expect(southampton.name).toBe('Southampton');
+        });
     });
 
-    it('sets a name', () => {
-        expect(southampton.name).toBe('Southampton');
+    describe('addShip', () => {
+        it('adds ships to ports', () => {
+            southampton.addShip(ship);
+            expect(southampton.ships).toContain(ship);
+        });
     });
 
-    it('adds ships to ports', () => {
-        southampton.addShip(ship);
-        expect(southampton.ships).toContain(ship);
-   });
+    describe('removeShip', () => {
+        it('removes ships from port', () => {
+            southampton.removeShip(ship);
+            expect(southampton.ships).toEqual([]);
+        });
 
-    it('removes ships from port', () => {
-       southampton.removeShip(ship);
-       expect(southampton.ships).toEqual([]);
     });
-
 });

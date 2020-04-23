@@ -1,6 +1,5 @@
 let Ship = require('../src/ship');
-let Port = require('../src/ports');
-let Itinerary = require('../src/itinerary');
+
 
 describe('setup', () => {
 
@@ -13,7 +12,7 @@ describe('setup', () => {
         port = {removeShip: jest.fn(), addShip: jest.fn()};
         southampton = {...port, name: 'Southampton', ships: []};
         venice = {...port, name: 'Venice', ships: []};
-        itinerary = new Itinerary([southampton, venice]);
+        itinerary = {ports: [southampton, venice]};
         ship = new Ship(itinerary);
     });
 

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/normalize.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
+    <title>Cruise Ships</title>
+  </head>
+  <body>
+    <div class="headup"></div>
+    <div class="add-port">
+      <form>
+        <label>Add port</label>
+        <input type="text" placeholder="Port Name" id="new-port" />
+        <button type="submit" id="submit">Add</button>
+      </form>
+    </div>
+
+    <main>
+      <div id="viewport">
+        <div id="ship"></div>
+        <div id="ports"></div>
+        <button type="button" id="sail-button">Set Sail!</button>
+      </div>
+    </main>
+  </body>
+  <script src="./src/controller.js"></script>
+  <script src="./src/ports.js"></script>
+  <script src="./src/ship.js"></script>
+  <script src="./src/itinerary.js"></script>
+  <script>
+    const itinerary = new Itinerary([]);
+    const ship = new Ship(itinerary);
+    const controller = new Controller(ship);
+  </script>
+</html>
